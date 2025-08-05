@@ -165,3 +165,4 @@ raise SystemExit()
 Positive ROI of between 9-12% is obtained after ~1500 bets. Again by placing bets at different locations and STRICTLY placing bets ONLY where my model provides a higher implied probability than the sportsbooks I am able to overcome the vig. Since a Flat-bet betting strategy was employed here, this ROI likely represents a minimum of potential ROI, as increased profits will probably be actualized under a fractional-Kelly-criterion betting strategy however at the tradeoff of much higher volatility/larger swings.  Repeated testing on different subsets of randomly selected test data returns similar results! Profitability is concluded. 
 
 ![Profit_testing_for_positive_ROI_Visual](positive_ROI.png)
+![Profit_testing_for_positive_ROI_Visual](Positive_ROI_B.png)
