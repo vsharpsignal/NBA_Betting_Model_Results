@@ -43,17 +43,17 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 ### Model_output_Regression_Curve.png
 The model produces probabilities that provide us a measure of the model's confidence/certainty in its predictions. If the probability is greater than .5 it predicts the team will win while if the probability is less than .5 it predicts the team will lose. Probabilities closer to 1 or 0 reflect a higher level of confidence in a team winning or losing respectively. In order to confirm that the model's probabilities accurately reflect the expected frequency of teams winning or losing I conducted a logistic regression of the model's predictions for the test set against the true outcome for every game in the test dataset. After running a logistic regression I plotted the model's probabilities on the x-axis and partition the teams that won from those that lost on the y-axis (ie points distributed around 1 (top) means the team won that game, while points distributed around 0 (bottom) means the team lost). We see that the model's predicted probabilities (black line) straddle the line y=x (blue line). This confirms that the model is well-calibrated and produces probabilities that truly reflect a team's likelihood of winning. We also notice that the model is very conservative in its predictions as the model rarely produces a probability greater than .82 or less than .09. I confirm during profit testing against real data that this is non-problematic to generating profitable picks. 
 
-![Model_output's_Logistic_Regression_Visual.png](Model_output_Regression_Curve (2).png)
+![Model_output's_Logistic_Regression_Visual.png](Model_output_Regression_Curve.png)
 
 ### Reliability/Calibration Curve
 This visual shows the calibration curve of the model on the test set which serves as further validation of calibration. Test set observations are "binned" into groups with similar predicted probabilities with the average probability of each bin given on the x-axis. The true proportion of win/losses for each group is given by each data point's y coordinate. 
 
-![Model_Reliability_Curve.png](Calibration_curve (1).png)
+![Model_Reliability_Curve.png](Calibration_curve.png)
 
 ### Model_Prediction_logistic_Regression.png
 This is the output from running a logistic regression of the model's predicted probabilities against the true binary outcomes of the test data set. We first see that the model obtains a 63% raw accuracy which is statistically significant since our test set is indeed balanced at approx 50% win/lose teams. I focus on the p-value of the coefficient for the model's predictions which is .000 (approx 0) allowing me to reject the hypothesis that my model has no statistical significance in predicting game winners and accept the alternative (i.e. I can trust that the model has predictive power).  
 
-![Logistic_Regression_output](Model_Prediction_logistic_Regression_Summary (2).png)
+![Logistic_Regression_output](Model_Prediction_logistic_Regression_Summary.png)
 
 ### Betting_Model_vs_Sportsbooks_plots.png
 Looking strictly at the test dataset I plotted my model's output probabilities on the x-axis and the scraped sportsbook's implied probabilities on the y-axis. We see that my model's output is highly correlated to the sportsbooks implying that my model is finding a strong signal in the data's noise. Nonetheless running a logistic regression analysis of the sportsbooks odds showed their implied probabilities do indeed obtain a lower log loss than my model (this is expected and due to vigorish/juice/"fee" charged by all sportsbooks). This does not impede my model from generating positive expected value picks (ie a positive ROI) since the variance of odds within the betting market is almost always greater than zero. The black line in the image is the line y=x, it is not a linear regression line. Only games below the black line are considered to be bet on, as games above the line do not have a model implied probability that has positive expectation relative to the sportsbook's odds. 
